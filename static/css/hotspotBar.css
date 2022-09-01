@@ -1,0 +1,53 @@
+
+#hotspotBar {
+    position: absolute;
+    top: 350px;
+    transform: translateX(-50%);
+    left: 50%;
+    width: 1280px;
+    height: 400px;
+    color: #fff;
+    border-radius: 25px;
+    background-color: rgba(255,255,255,.25);
+    box-shadow: rgba(0,0,0,.2) 0 0 20px;
+    -webkit-backdrop-filter: blur(10px);
+}
+
+
+
+
+.hotspot {
+    width: 320px;
+    height: 350px;
+    margin-left: 80px;
+    padding: 15px 10px;
+    background-color: rgba(255,255,255,.30);
+    margin-top: 25px;
+    box-shadow: rgba(0,0,0,.2) 0 0 10px;
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 25px;
+    display: inline-block;
+    overflow: auto;
+}
+
+.ou {
+    background-color: rgba(255,255,255,.25);
+}
+.ji{
+    background-color: rgba(255,255,255,.0);
+}
+
+.lie1 {
+    font-size: 16px;
+    width: 30px;
+    color: rgba(255,255,255,.75);
+    text-align: center;
+}
+.lie2 {
+    padding-right: 5px;
+}
+tr  {
+    display: block;
+    padding-bottom: 5px;
+    border-bottom: 2px solid rgba(255,255,255,.10);
+}
