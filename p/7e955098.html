@@ -1,0 +1,574 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>关于java类的一些笔记 | ByL的小窝</title>
+        <meta name="author" content="ByL" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <link rel="icon" href="/" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+                <div id="loading" v-show="loading">
+                    <div id="loading-circle">
+                        <h2>LOADING</h2>
+                        <p>加载过慢请开启缓存 浏览器默认开启</p>
+                        <img src="/images/loading.gif" />
+                    </div>
+                </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div id="desktop-menu">
+        <a class="title" href="/">
+            <span>BYL的小窝</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;BYL的小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </div>
+</nav>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+            <transition name="into">
+                <div id="main" v-show="!loading">
+                    <div class="article">
+    <div>
+        <h1>关于java类的一些笔记</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/5/22
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E7%AC%94%E8%AE%B0/" style="color: #ff7d73">笔记</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <span id="more"></span>
+<h1>String</h1>
+<blockquote>
+<p>[!tip]</p>
+<ol>
+<li>String 对象用于保存字符串, 也就是一组字符序列</li>
+<li>字符串常量对象是双引导括起的字符序列</li>
+<li>字符串的字符使用unicode字符编码, 一个字符占两个字节 (<mark style="background: #ADCCFFA6;">字母和数字都占两个字节</mark>)</li>
+<li>String类较常用的构造方法</li>
+</ol>
+</blockquote>
+<pre><code class="language-java">String s1 = new String();
+String s2 = new String(String original);
+String s3 = new String(char[] a);
+String s4 = new String(char[] a,int startIndex,int count);
+</code></pre>
+<p>String对象实现了 <code>Serializable</code> 接口, 说明String可以串行化, <mark style="background: #ADCCFFA6;">可以在网络传输</mark></p>
+<ul>
+<li>String是一个 [[final]] 类, 不可以被其他继承</li>
+<li><code>value[]</code> 属性: <code>private final char value[]</code> 字符常量数组,赋值后不可修改 ,但数组[i] 的值可以修改</li>
+</ul>
+<h1>创建</h1>
+<ul>
+<li>String s = “hsp”;</li>
+<li>String s2 = new String(“hsp”);</li>
+</ul>
+<h2 id="两者区别">两者区别</h2>
+<ol>
+<li>方式一: 先从常量池查看是否有 hsp 数据空间, 如果有, 直接指向; 如果没有则重新创建, 然后指向. <mark style="background: #FF5582A6;">s最终指向常量池的空间地址.</mark></li>
+<li>方式二: 先在堆中创建空间, 里面维护了value属性, 指向常量池的 hsp 空间. 如果没有 hsp , 重新创建, 如果有, 直接通过value指向, 最终<mark style="background: #FF5582A6;">指向的是堆中的空间地址. </mark></li>
+</ol>
+<h2 id="特性">特性</h2>
+<ol>
+<li>String是一个final类, 代表不可变的字符序列</li>
+<li>字符串是不可变的. 一个字符串对象一旦被分配, 其内容是不可变的.</li>
+</ol>
+<pre><code class="language-java">String s3 = &quot;hello&quot;;  
+s3 = &quot;haha&quot;;  
+// 创建了两个对象, s3 重新指向haha, 而不是改变 &quot;hello&quot;的值  
+String s4 = &quot;hello&quot; + &quot;abc&quot;;  
+/*创建了1个对象  
+* 编译器会优化 等价于 String a = &quot;Helloabc&quot;;* 
+* */String a = &quot;hello&quot;;  
+String b = &quot;abc&quot;;  
+String c = a + b;  
+/*创建了三个对象  
+* 1. 先创建一个 StringBuilder sb = StringBuilder* 2. 执行 sb.append(&quot;hello&quot;);* 3. 再执行 sb.append(&quot;abc&quot;);* 4. 再调用 sb.toString()方法, 返回一个 new String(value,0,count)对象  
+* 最后其实是c -&gt; 堆中的对象(String) value[] -&gt; 池中的 &quot;helloabc&quot;* */
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>equals</td>
+<td>区分大小写,判断内容是否相等</td>
+</tr>
+<tr>
+<td>equalsgnoreCase</td>
+<td>忽略大小写的判断内容是否相等</td>
+</tr>
+<tr>
+<td>length</td>
+<td>获取字符的个数, 字符串的长度</td>
+</tr>
+<tr>
+<td>indexOf</td>
+<td>获取字符串在字符串中第一个出现的索引, 索引从0开始</td>
+</tr>
+<tr>
+<td>lastIndexOf</td>
+<td>获取字符串最后一次出现的索引, 索引从0开始</td>
+</tr>
+<tr>
+<td>substring</td>
+<td>截取指定范围的子串</td>
+</tr>
+<tr>
+<td>trim</td>
+<td>去空格</td>
+</tr>
+<tr>
+<td>charAt</td>
+<td>获取某索引处的字符, 注意不能使用Str[index]</td>
+</tr>
+</tbody>
+</table>
+<h1>StringBuffer</h1>
+<blockquote>
+<p>可变字符序列, 可以对字符串内容进行增删<br>
+是一个容器<br>
+仍然是[[final]]类型<br>
+与[[String]]有很多相似的方法</p>
+</blockquote>
+<h2 id="解析">解析</h2>
+<ol>
+<li>StringBuffer 的直接父类 是 AbstractStringBuilder</li>
+<li>实现了 Serializable, 可以串行化</li>
+<li><mark style="background: #FF5582A6;">在AbstractStringBuilder 中, 有属性 char[] value, 不是fnal类型</mark>
+<ol>
+<li>该数组存放字符串内容, <mark style="background: #FF5582A6;">存放在堆中, 不在常量池内</mark></li>
+</ol>
+</li>
+</ol>
+<h2 id="String-vs-StringBuffer">String vs StringBuffer</h2>
+<ol>
+<li>String 保存的是字符串常量, 里面的值不能更改, 每次String类的更新实际上就是更改地址, 效率较低</li>
+<li>StringBuffer保存的是字符串变量, 里面的值可以更改, 不用每次更新地址,效率高</li>
+</ol>
+<hr>
+<h1>StringBuilder</h1>
+<ol>
+<li>一个可变的字符序列. 此类提供一个与StringBuffer 兼容的API, 但不保真同步(String)Builder不是线程安全. 该类被设计用作StringBuffer的一个简易替换, <mark style="background: #FF5582A6;">用在字符串缓存区被单个线程使用的时候.</mark> 如果可能建议优先采用该类,在大多数实现中, 它比StringBuffer要快</li>
+<li>在StringBuilder上主要操作是 append 和 insert方法, 可重载这些方法,以接受任意类型的数据</li>
+</ol>
+<h2 id="String-StringBuffer-StringBuilder-比较">[[String]] [[StringBuffer]] [[StringBuilder]] 比较</h2>
+<ol>
+<li>结构非常相似,均代表可变的字符序列, 而且方法也一样</li>
+<li>String: 不可变字符序列, 效率低, 但复用率高
+<ol>
+<li>StringBuffer: 可变字符序列, 效率较高(增删) 线程安全</li>
+<li>StringBuilder: 可变字符序列 效率最高 线程不安全</li>
+</ol>
+</li>
+</ol>
+<hr>
+<h1>HashSet</h1>
+<h2 id="添加元素机制">添加元素机制</h2>
+<ol>
+<li>HashSet底层是[[HashMap]]</li>
+<li>添加一个元素时, 先得到hash值 - 会转化成 -&gt; 索引值</li>
+<li>找到存储数据表table, 看这个索引位置是否已存放的有元素</li>
+<li>如果没有直接加入</li>
+<li>如果有, 调用equals比较,如果相同就放弃添加, 如果不同就添加到最后</li>
+<li>在Java8中, 如果一条链表的元素超过TREEIFY_THRESHOLD(默认是8), 并且table的大小 &gt;= MIN_TREEIFY_CAPACITY(默认64)就会进行树化(红黑树)</li>
+</ol>
+<h2 id="源码解析">源码解析</h2>
+<ol>
+<li>HashSet</li>
+</ol>
+<pre><code class="language-java">public HashSet() &#123;  
+    map = new HashMap&lt;&gt;();  
+&#125;
+</code></pre>
+<ol start="2">
+<li>add()</li>
+</ol>
+<pre><code class="language-java">public boolean add(E e) &#123;  
+    return map.put(e, PRESENT)==null;  
+&#125;
+</code></pre>
+<ol>
+<li>put()</li>
+</ol>
+<pre><code class="language-java">public V put(K key, V value) &#123;  //PRESENT = private static final Object PRESENT = new Object();
+    return putVal(hash(key), key, value, false, true);  
+&#125;
+</code></pre>
+<pre><code class="language-java">static final int hash(Object key) &#123;  
+    int h;  
+    return (key == null) ? 0 : (h = key.hashCode()) ^ (h &gt;&gt;&gt; 16);  
+&#125;
+</code></pre>
+<pre><code>该方法会执行hash(key) , 会的到一个hash值
+	与hashcode不同
+	&gt; 减少hash冲突概率
+</code></pre>
+<pre><code class="language-java">final V putVal(int hash, K key, V value, boolean onlyIfAbsent,  
+               boolean evict) &#123;  
+    Node&lt;K,V&gt;[] tab; Node&lt;K,V&gt; p; int n, i;  
+    if ((tab = table) == null || (n = tab.length) == 0)  
+        n = (tab = resize()).length;  
+    if ((p = tab[i = (n - 1) &amp; hash]) == null)  
+        tab[i] = newNode(hash, key, value, null);  
+    else &#123;  
+        Node&lt;K,V&gt; e; K k;  
+        if (p.hash == hash &amp;&amp;  
+            ((k = p.key) == key || (key != null &amp;&amp; key.equals(k))))  
+            e = p;  
+        else if (p instanceof TreeNode)  
+            e = ((TreeNode&lt;K,V&gt;)p).putTreeVal(this, tab, hash, key, value);  
+        else &#123;  
+            for (int binCount = 0; ; ++binCount) &#123;  
+                if ((e = p.next) == null) &#123;  
+                    p.next = newNode(hash, key, value, null);  
+                    if (binCount &gt;= TREEIFY_THRESHOLD - 1) // -1 for 1st  
+                        treeifyBin(tab, hash);  
+                    break;  
+                &#125;  
+                if (e.hash == hash &amp;&amp;  
+                    ((k = e.key) == key || (key != null &amp;&amp; key.equals(k))))  
+                    break;  
+                p = e;  
+            &#125;  
+        &#125;  
+        if (e != null) &#123; // existing mapping for key  
+            V oldValue = e.value;  
+            if (!onlyIfAbsent || oldValue == null)  
+                e.value = value;  
+            afterNodeAccess(e);  
+            return oldValue;  
+        &#125;  
+    &#125;  
+    ++modCount;  
+    if (++size &gt; threshold)  
+        resize();  
+    afterNodeInsertion(evict);  
+    return null;  
+&#125;
+</code></pre>
+<h1>HashMap</h1>
+<blockquote>
+<p>HaspMap底层是 数组 + 链表 + 红黑树</p>
+</blockquote>
+<hr>
+<h1>LinkedList</h1>
+<blockquote>
+<p>[!tip]</p>
+<ol>
+<li>LinkedList底层实现了双向链表和双端队列特点</li>
+<li>可以添加任意元素, 元素可以重复, 包括null</li>
+<li>线程不安全, 没有实现同步</li>
+</ol>
+</blockquote>
+<h2 id="底层操作机制">底层操作机制</h2>
+<ol>
+<li>LinkedList底层维护了一个双向链表</li>
+<li>LinkedList中维护了两个属性 first 和 last 分别指向首结点 和 尾结点</li>
+<li>每个结点 Node对象, 里面又维护了prev next item 三个属性</li>
+<li>prev 指向前一个</li>
+<li>next 指向后一个</li>
+<li>item 为值</li>
+<li>最终实现了双向链表</li>
+<li>所以LinkedList的元素的添加和删除,不是通过数组完成的,相对效率较高 (增删)</li>
+</ol>
+<hr>
+<h1>LinkedHashSet</h1>
+<blockquote>
+<p>[!tip]</p>
+<ol>
+<li>LinkedHashSet是[[HashSet]]的子类</li>
+<li>LinkeHashSet底层是一个LinkedHashMap, 底层维护了一个数组 + 双向链表</li>
+<li>LinkedHashSet 根据元素的hashCode 值来决定元素的存储位置, 同时是哟哦那个链表维护元素的次序, 这使得元素看起来是以插入顺序保存的</li>
+</ol>
+</blockquote>
+<hr>
+<h1>ArrayList</h1>
+<blockquote>
+<p>继承了[[List]]</p>
+</blockquote>
+<h2 id="注意事项">注意事项</h2>
+<ol>
+<li>permits all elements, including null, ArrayList 可以加入null, 并且多个</li>
+<li>ArrayList 时由数组来实现数据存储的</li>
+<li>ArrayList基本等同于[[Vector]], 除了ArrayList是线程不安全 (执行效率高)</li>
+</ol>
+<h2 id="底层源码分析重点难点">底层源码分析<s>重点</s><em>难点</em></h2>
+<ol>
+<li>ArrayList中维护了一个Object类型的数组 elementData
+<ol>
+<li><code>transient[^1] Object[] elementData;</code></li>
+</ol>
+</li>
+<li>当创建ArrayList对象时, 如果使用的是无参构造器, 则初始elementData的容量为0, 第一次添加, 则扩容elementData为10, 如果需要再次扩容,则扩容elementData为1.5倍.</li>
+<li>如果使用的是指定大小的构造器, 则初始elementData容量为指定大小, 如果需要扩容,则直接扩容elementData为1.5倍</li>
+</ol>
+<h1>Vector</h1>
+<h2 id="底层结构">底层结构</h2>
+<blockquote>
+<p>属于[[List]]接口</p>
+</blockquote>
+<ol>
+<li>Vector 也属于一个对象数组, <code>protected Object[] elementData</code>;</li>
+<li>Vector 是线程同步的, 即线程安全, Vector类的操作方法带有synchronized</li>
+<li>在开发中, 需要线程同步安全时, 考虑使用Vector</li>
+</ol>
+<h2 id="vector和-ArrayList-比较">vector和[[ArrayList]]比较</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>底层结构</th>
+<th>版本</th>
+<th>线程安全,效率</th>
+<th>扩容倍数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ArrayList</td>
+<td>可变数组</td>
+<td>jdk1.2</td>
+<td>不安全,效率高</td>
+<td>如果有参构造1.5倍,如果无参构造第一次10,第二次1.5倍</td>
+</tr>
+<tr>
+<td>Vector</td>
+<td>可变数组</td>
+<td>jdk1.0</td>
+<td>安全,效率不高</td>
+<td>如果无参, 默认10 第二次2倍,指定大小,每次2倍扩容</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h1>System</h1>
+<h2 id="常用方法">常用方法</h2>
+<ol>
+<li>exit 退出当前方法</li>
+<li>arraycopy 复制数组元素, 比较适合底层调用, 一般使用
+<ol>
+<li>[[Arrays]].copyOf 完成赋值数组</li>
+<li>int[] ser = {1,2,3};</li>
+<li>int[] dest = int[3];</li>
+<li>System.arraycopy(src,0,dest,0,3);</li>
+</ol>
+</li>
+<li>currentTimeMillens: 返回当前时间距离1970-1-1 的毫秒数</li>
+<li>gc: 运行垃圾回收机制 System.gc()</li>
+</ol>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+                    <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2023 ByL的小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;ByL
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+                </div>
+            </transition>
+            
+            <transition name="fade">
+                <div id="preview" ref="preview" v-show="previewShow">
+                    <img id="preview-content" ref="previewContent" />
+                </div>
+            </transition>
+            
+        </div>
+        <script src="/js/main.js"></script>
+        
+        
+<script
+    src="https://giscus.app/client.js"
+    data-repo="weidoo/weidoo.github.io"
+    data-repo-id="R_kgDOJSEe1A"
+    data-category="Ideas"
+    data-category-id="DIC_kwDOJSEe1M4CVmYu"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+        
+    </body>
+</html>

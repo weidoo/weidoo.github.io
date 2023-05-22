@@ -1,0 +1,638 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>java学习的一些笔记 | ByL的小窝</title>
+        <meta name="author" content="ByL" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <link rel="icon" href="/" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+                <div id="loading" v-show="loading">
+                    <div id="loading-circle">
+                        <h2>LOADING</h2>
+                        <p>加载过慢请开启缓存 浏览器默认开启</p>
+                        <img src="/images/loading.gif" />
+                    </div>
+                </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div id="desktop-menu">
+        <a class="title" href="/">
+            <span>BYL的小窝</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;BYL的小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </div>
+</nav>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+            <transition name="into">
+                <div id="main" v-show="!loading">
+                    <div class="article">
+    <div>
+        <h1>java学习的一些笔记</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/5/21
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E7%AC%94%E8%AE%B0/" style="color: #ff7d73">笔记</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <span id="more"></span>
+<h1>代码块</h1>
+<h2 id="基本介绍">基本介绍</h2>
+<ul>
+<li>属于类中的成员</li>
+<li>类似于方法, 将逻辑语句封装在方法体中, 通过{}包围起来
+<ul>
+<li>不能通过对象或类显式调用, 而是加载类时, 或创建对象时隐式调用</li>
+</ul>
+</li>
+</ul>
+<h2 id="基本语法">基本语法</h2>
+<pre><code>[修饰符] &#123;
+	代码
+&#125;;
+</code></pre>
+<ol>
+<li>修饰符只有[[static]]</li>
+<li>代码块分为两类静态代码块和普通代码块</li>
+<li>逻辑语句可以是任何逻辑语句</li>
+<li>;可以写,也可以省略</li>
+</ol>
+<h2 id="细节">细节</h2>
+<ol>
+<li><mark style="background: #FF5582A6;">static 代码块,作用就是对类进行初始化, 而且它随着类的加载而执行, 并且只会执行一次</mark>,
+<ol>
+<li>如果是普通代码块, 没创建一个对象就执行.</li>
+</ol>
+</li>
+<li>类什么时候被加载<br>
+1. 创建对象实例时, new<br>
+2. <mark style="background: #ABF7F7A6;">创建子类对象实例,父类也会被加载</mark><br>
+3. <mark style="background: #ABF7F7A6;">使用类的静态成员时(静态属性, 静态方法)</mark></li>
+<li>普通的代码块, 在创建对象实例时, 会被隐式调用.被创建一次就会调用一次.
+<ol>
+<li><mark style="background: #FF5582A6;">如果只是使用类的静态成员时,普通代码块就不会执行.</mark>
+<ol>
+<li><mark style="background: #FFF3A3A6;">因为静态方法只能调用静态变量和静态方法,静态代码块</mark></li>
+</ol>
+</li>
+</ol>
+</li>
+<li>![[类的调用顺序]]</li>
+<li>构造方法的最气那面其实隐含了 super() 和普通代码块, 静态相关的代码块, 属性初始化, 在类加载时, 就执行完毕了, 因此有优先于构造器和普通代码块执行的</li>
+<li>静态代码块只能直接调用用静态成员, 普通代码块可以调用任意成员
+<ol>
+<li>[[类的调用顺序]]中, <mark style="background: #ABF7F7A6;">静态初始化时, 普通还未初始化所以不可以调用</mark></li>
+</ol>
+</li>
+</ol>
+<hr>
+<h1>多态</h1>
+<h3 id="对象的多态">对象的多态</h3>
+<ol>
+<li>一个对象的编译类型和运行类型可以不一致</li>
+<li>编译类型在定义对象时，就确定了，不能改变</li>
+<li>运行类型是可以变化的</li>
+<li><mark style="background: #FF5582A6;">编译类型看定义时 = 号的左边，运行类型看 = 号的右边</mark></li>
+</ol>
+<blockquote>
+<p>看运行时执行的运行状态是什么, 则运行哪个方法.</p>
+</blockquote>
+<h3 id="属性重写问题">属性重写问题</h3>
+<ul>
+<li>属性没有重写!
+<ul>
+<li>属性的值看编译类型</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-java">bb instanceof AA
+</code></pre>
+<p><code>instanceof</code> 比较操作符 : 用于判断对象的类型是否为XX类型或XX类型的字类型</p>
+<h2 id="向上转型">向上转型</h2>
+<hr>
+<ul>
+<li>特点
+<ul>
+<li>可以调用父类的所有成员(需要遵守访问权限)</li>
+<li>但是不能调用子类的特有成员
+<ul>
+<li>因为在编译阶段,能调用哪些成员由编译类型来决定</li>
+</ul>
+</li>
+<li>最终的运行效果看子类的具体实现</li>
+</ul>
+</li>
+</ul>
+<h2 id="向下转型">向下转型</h2>
+<hr>
+<pre><code class="language-java">cat cat = (cat)animal;
+</code></pre>
+<ul>
+<li>特点
+<ul>
+<li>只能强制转换父类的引用,不能强制转换父类的对象</li>
+<li>要求父类的引用必须指向的是当前目标类型的对象</li>
+<li>可以调用子类类型中所有的成员</li>
+</ul>
+</li>
+</ul>
+<h1>动态绑定机制</h1>
+<hr>
+<ol>
+<li>当调用对象方法的时候, 该方法会和该对象的内存地址/ 运行类型绑定</li>
+<li>当调用对象属性时, 没有动态绑定机制, 哪里声明,哪里使用</li>
+</ol>
+<hr>
+<blockquote>
+<p>方法看运行, 属性看编译.</p>
+</blockquote>
+<hr>
+<hr>
+<h1>多态数组</h1>
+<pre><code class="language-java">public static void main(String[] args) &#123;  
+    Person[] persons = new Person[5];  
+    persons[0] = new Person();  
+    persons[1] = new Student();  
+    persons[2] = new Student();  
+    persons[3] = new teacher();  
+    persons[4] = new Teacher();  
+&#125;
+</code></pre>
+<blockquote>
+<p>利用[[多态]]的动态绑定机制建立动态分配运行类型</p>
+</blockquote>
+<h2 id="多态数组如何调用子类特有的方法">多态数组如何调用子类特有的方法</h2>
+<blockquote>
+<p><mark style="background: #ADCCFFA6;">向下转型</mark></p>
+</blockquote>
+<pre><code class="language-java">for (int i = 0; i &lt; 5; i++) &#123;  
+    if (persons[i] instanceof Student) &#123;  
+        (Student)persons[i].study();  
+    &#125; else if (persons[i] instanceof Teacher) &#123;  
+        (Teacher)persons[i].teach();  
+    &#125;  
+&#125;
+</code></pre>
+<p>通过 <code>instanceof</code> 判断向上转型的对象时候是该子类, 如果是那么将其<strong>向下转型</strong>到用</p>
+<h1>接口的多态特性</h1>
+<blockquote>
+<p>[!ob-example] 接口的[[多态]]特性</p>
+<ol>
+<li>多态参数</li>
+<li>多态数组</li>
+<li>接口存在多态传递现象</li>
+</ol>
+</blockquote>
+<pre><code class="language-java">public interface IF &#123;  
+&#125;  
+  
+class Monster implements IF &#123;&#125;  
+class Car implements IF &#123;&#125;  
+  
+class Test &#123;  
+    public static void main(String[] args) &#123; 
+	    //接口的多态体现
+	    //接口类型的变量 if1 可以指向 实现了IF接口的对象实例
+	    //向上转型 
+        IF if1 = new Monster();  
+        if1 = new Car();  
+    &#125;  
+&#125;
+</code></pre>
+<h2 id="接口存在多态传递现象">接口存在多态传递现象</h2>
+<p>和继承多次向上转型没区别</p>
+<h1>类的调用顺序</h1>
+<ol>
+<li>调用静态代码块和静态属性初始话
+<ol>
+<li>静态代码块和静态属性初始话调用的优先级一样,</li>
+<li>如果有多个静态代码块和静态属性,则按他们定义的顺序调用</li>
+</ol>
+</li>
+<li>调用普通代码块和普通属性的初始化</li>
+<li>调用构造方法</li>
+</ol>
+<h3 id="继承后的调用顺序">继承后的调用顺序</h3>
+<ol>
+<li>父类的静态</li>
+<li>子类的静态</li>
+<li>父类的普通代码块和普通属性初始化</li>
+<li>父类的构造方法</li>
+<li>子类的普通[[代码块]]和普通属性初始化</li>
+<li>子类的构造方法</li>
+</ol>
+<hr>
+<blockquote>
+<p>也就是说先在堆内存中初始化静态域, 然后在初始化普通域</p>
+</blockquote>
+<h1>元注解</h1>
+<blockquote>
+<p>元注解就是修饰注解的注解</p>
+</blockquote>
+<blockquote>
+<p>[!emample] 元注解</p>
+<ol>
+<li><code>Retention</code> 指定注解的作用范围,</li>
+<li>source</li>
+<li>class</li>
+<li>runtime</li>
+<li><code>target</code> 指定注解可以在哪些地方使用</li>
+<li><code>Documented</code> 指定该注解是否会在javadoc 体现</li>
+<li><code>Inherited</code> 子类会继承父类注解</li>
+</ol>
+</blockquote>
+<h1>注解</h1>
+<blockquote>
+<p>[!Annotation]<br>
+用于修饰解释 包 类 方法 属性 构造器 局部变量等信息</p>
+<ul>
+<li>也称为元数据</li>
+</ul>
+</blockquote>
+<ol>
+<li>和注释一样, 注解不影响程序的逻辑, 但注解可以被编译或运行, 相当于嵌入在代码中的补充信息</li>
+<li>在javaSE中, 注解的使用目的比较简单, 标记过时的功能, 忽略警告</li>
+<li>在javaEE中注解占据了重要的角色, 例如用来配置应用程序的任何切面, 代替Java EE 旧版中所遗留的冗余代码和XML配置等</li>
+</ol>
+<p>[^3]&gt;[!example] 基本注解</p>
+<blockquote>
+<ol>
+<li><code>@Override</code> 限定某个方法, 是重写父类的方法, 该注解只能用于方法</li>
+<li><code>@Deprecated</code> 用于表示某个程序元素(类 方法) 已经过时</li>
+<li><code>@SuppressWarning</code> 抑制编译器警告</li>
+</ol>
+</blockquote>
+<h3 id="Override">Override</h3>
+<ol>
+<li><code>Override</code> 表示指定重写父类的方法</li>
+<li>只能修饰方法</li>
+<li><code>@Target</code> 是修饰注解的注解 ,[[元注解]]</li>
+</ol>
+<h1>Static</h1>
+<blockquote>
+<p>静态存放在堆内存中的静态域中</p>
+</blockquote>
+<h2 id="静态变量">静态变量</h2>
+<ul>
+<li>对象共享静态域</li>
+</ul>
+<h2 id="静态方法">静态方法</h2>
+<h3 id="经典使用场景">经典使用场景</h3>
+<p>当方法中不涉及到任何和对象相关的成员, 则可以将该方法设计成静态方法, 提高开发效率</p>
+<ul>
+<li>工具类中的方法 <code>utils</code>都是静态方法</li>
+</ul>
+<h3 id="使用细节">使用细节</h3>
+<ol>
+<li>类方法和普通方法都是随着类的加载而加载, 将结构信息存储在方法区:
+<ol>
+<li><mark style="background: #FF5582A6;">类方法中无this参数</mark></li>
+<li>普通方法中隐含着this的参数</li>
+</ol>
+</li>
+<li>类方法可以通过类名调用,也可通过对象名调用</li>
+<li>普通方法和对象有关, 需要通过对象名调用</li>
+<li>类方法中不可以出现和对象有关的关键字: <code>this</code> 和 <code>super</code></li>
+<li><mark style="background: #FF5582A6;">静态方法只能调用静态成员或静态方法, 普通方法可以调用静态成员和非静态成员</mark></li>
+</ol>
+<hr>
+<h3 id="思考">思考</h3>
+<p><mark style="background: #FF5582A6;">static 相当于类本身的属性和方法.</mark></p>
+<hr>
+<h1>Object类</h1>
+<h1>equals</h1>
+<h2 id="equals-与-的比较">equals 与 == 的比较</h2>
+<ul>
+<li>==
+<ul>
+<li><mark style="background: #BBFABBA6;">是一个比较运算法</mark></li>
+<li>既可以判断基本类型, 又可以判断引用类型</li>
+<li>如果判断<strong>基本类型</strong>, 判断的是值是否相等.</li>
+<li>如果判断<strong>引用类型</strong>, 判断的是地址是否相等
+<ul>
+<li>即判定是不是同一个对象</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>equals
+<ul>
+<li>Object类的一个方法, 只能判断引用类型</li>
+<li>默认判断<strong>地址是否相等</strong>
+<ul>
+<li>子类往往重写该方法, 用于判读啊内容是否相等.
+<ul>
+<li>String 和 integer 的<code>equals</code> 都重写了,令其判断值是否相等</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1>hashCode</h1>
+<ol>
+<li>提高具有哈希结构的容器的效率</li>
+<li>两个引用, 如果指向的是同一个对象, 则哈希值肯定一样的!</li>
+<li>两个引用, 如果指向的是不同对象, 则哈希值是不一样的!</li>
+<li>哈希值主要根据地址号来生成的!  不能完全将哈希值等价于地址.</li>
+<li>后面在集合, 中hash code如果需要的话, 也会改写</li>
+</ol>
+<h1>toString</h1>
+<blockquote>
+<p>默认输出包名.类名@十六进制哈希值</p>
+</blockquote>
+<pre><code class="language-java">public String toString() &#123;  
+    return getClass().getName() + &quot;@&quot; + Integer.toHexString(hashCode());  
+&#125;
+</code></pre>
+<ul>
+<li>getClass().getName()
+<ul>
+<li>类的全类名</li>
+</ul>
+</li>
+<li>Integer.toHexString(hashCode())
+<ul>
+<li>将对象的哈希值转化为十六进制</li>
+</ul>
+</li>
+</ul>
+<h1>finaliza</h1>
+<ol>
+<li>当对象被回收时,系统自动调用该对象的finalize方法. 子类可以重写该方法, 做一些释放资源的操作
+<ol>
+<li>什么时候被回收: 当莫个对象没有任何引用时, 则jvm就认为这个对象是一个垃圾对象, 就会使用垃圾回收机制来销毁该对象, 在销毁该对象前, 会先调用finalize方法.</li>
+</ol>
+</li>
+<li>垃圾回收机制的调用,是由系统来决定的, <mark style="background: #ADCCFFA6;">也可以通过System.gc() 主动出发垃圾回收机制.</mark></li>
+</ol>
+<hr>
+<p><mark style="background: #FF5582A6;">在实际开发中<code>finalize</code>方法已经弃用</mark></p>
+<hr>
+<h1>final</h1>
+<blockquote>
+<p>final可以修饰类 属性 方法 局部变量<br>
+<mark style="background: #ADCCFFA6;">final中文意思: 最终的,最后的</mark></p>
+</blockquote>
+<h2 id="需要final的场景">需要final的场景</h2>
+<ol>
+<li>当不希望类被继承时, 可以用final</li>
+<li>当不希望父类的某个方法被子类重写时</li>
+<li>当不希望类的某个属性的值被修改, 可以用final</li>
+<li>当不希望某个局部变量被修改时</li>
+</ol>
+<h2 id="使用细节-2">使用细节</h2>
+<ol>
+<li>final修饰的属性 又称 常量</li>
+<li>常量在定义时必须 <strong>覆初值</strong> , 赋初值的位置如下
+<ol>
+<li>定义时</li>
+<li>在构造器中</li>
+<li>在代码块中</li>
+</ol>
+</li>
+<li>final 在被 static 修饰时, 只能在
+<ol>
+<li>定义时</li>
+<li>在静态代码块中
+<ol>
+<li><mark style="background: #FF5582A6;">不能在构造器中赋值</mark></li>
+</ol>
+</li>
+</ol>
+</li>
+<li>final类不能被继承</li>
+<li>如果类不是final类, 但含有final方法, 则该类无法重写, 但<mark style="background: #ADCCFFA6;">可以被继承</mark></li>
+<li>一般如果一个类已经是final类, 就没有必要再将方法修饰为final方法</li>
+<li>final不呢个修饰构造器</li>
+<li><mark style="background: #D2B3FFA6;">fianl 和 static 往往搭配使用, 效率更高, 底层编译器做了优化处理</mark></li>
+<li><mark style="background: #BBFABBA6;">包装类(integer Double Float Boolean 都是final), String也是final类</mark></li>
+<li><mark style="background: #FF5582A6;">基本类型看值, 引用类型看地址, 数组是引用类型, 地址中的值可以被改变;</mark></li>
+</ol>
+<pre><code class="language-java">public class final01 &#123;  
+    public final int TAX_RATE = 1;  
+    public final int TAX_RATE2;  
+    public final int TAX_RATE3;  
+  
+    public final01() &#123;  
+        this.TAX_RATE2 = 2;  
+    &#125;  
+  
+    &#123;        TAX_RATE3 = 3;  
+    &#125;  
+&#125;
+</code></pre>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+                    <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2023 ByL的小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;ByL
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+                </div>
+            </transition>
+            
+            <transition name="fade">
+                <div id="preview" ref="preview" v-show="previewShow">
+                    <img id="preview-content" ref="previewContent" />
+                </div>
+            </transition>
+            
+        </div>
+        <script src="/js/main.js"></script>
+        
+        
+<script
+    src="https://giscus.app/client.js"
+    data-repo="weidoo/weidoo.github.io"
+    data-repo-id="R_kgDOJSEe1A"
+    data-category="Ideas"
+    data-category-id="DIC_kwDOJSEe1M4CVmYu"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+        
+    </body>
+</html>

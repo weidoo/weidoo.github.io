@@ -1,0 +1,522 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>关于前端布局的一些知识 | ByL的小窝</title>
+        <meta name="author" content="ByL" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <link rel="icon" href="/" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.4/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.4/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+                <div id="loading" v-show="loading">
+                    <div id="loading-circle">
+                        <h2>LOADING</h2>
+                        <p>加载过慢请开启缓存 浏览器默认开启</p>
+                        <img src="/images/loading.gif" />
+                    </div>
+                </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div id="desktop-menu">
+        <a class="title" href="/">
+            <span>BYL的小窝</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;BYL的小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </div>
+</nav>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+            <transition name="into">
+                <div id="main" v-show="!loading">
+                    <div class="article">
+    <div>
+        <h1>关于前端布局的一些知识</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/4/22
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E7%AC%94%E8%AE%B0/" style="color: #03a9f4">笔记</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E5%89%8D%E7%AB%AF/" style="color: #03a9f4">前端</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>这篇笔记将简单介绍一下前端布局，包括其优缺点，以及其大致的应用场景。布局的选择在页面主体结构开发中至关重要，选择合适的布局模式，在开发过程中，会和德芙一样，纵享丝滑～</p>
+<span id="more"></span>
+<h2 id="css的发展路线">css的发展路线</h2>
+<p><img src="./assets/image-20230422223444408.png" alt="image-20230422223444408"></p>
+<blockquote>
+<ul>
+<li><strong>CSS1.0</strong>：这是CSS的第一个版本，于1996年底发布，主要定义了一些基本的样式属性，如字体、颜色、背景、边距、对齐等，以及一些基本的选择器，如元素选择器、类选择器、ID选择器等。CSS1.0的目的是实现内容和表现的分离，让网页更加美观和易于维护。</li>
+<li><strong>CSS2.0</strong>：这是CSS的第二个版本，于1998年5月发布，基于CSS1.0的基础上增加了很多高级的功能，如浮动和定位、高级选择器、伪类和伪元素、媒体类型、表格样式等。CSS2.0的目的是提供更多的布局和交互能力，让网页更加灵活和丰富。</li>
+<li><strong>CSS3.0</strong>：这是CSS的第三个版本，目前还没有最终定稿，但已经有很多模块被浏览器支持。CSS3.0是基于模块化开发的，每个模块都有自己的规范和状态。CSS3.0增加了很多强大的新功能，如动画和过渡、变形和转换、弹性盒子和网格布局、圆角和阴影、渐变和滤镜、字体和图标等。CSS3.0的目的是提供更多的创意和效果，让网页更加美观和动感。</li>
+</ul>
+</blockquote>
+<p>从 1.0 我们只能进行简单的样式更改, 到 2.0 可以更方便的处理 表格 媒体 更易于的对元素选择. 再到 3.0 我们可以对样式进行更加丰富, 具有想象力的创作. 我们接触了大部分的样式操作，但对过于复杂的页面样式，大家在写项目时，也应该感受到了布局的选择局限了我们的开发效率，为调整布局结构而浪费大量时间。</p>
+<p>下面部分将介绍一下，css发展至今的5大布局。</p>
+<h2 id="五大布局">五大布局</h2>
+<hr>
+<h3 id="固定布局">固定布局</h3>
+<blockquote>
+<p>固定布局是一种网页布局方式，它的特点是网页内容被一个固定宽度的容器包裹，容器内的区块都有固定的百分比或者像素宽度值。<a target="_blank" rel="noopener" href="https://www.cnblogs.com/MirageFox/p/6754791.html">1</a> 固定布局的优点是能够精确控制网页的设计和排版，不受浏览器窗口大小的影响。<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/23909497">2</a> 固定布局的缺点是不能充分利用浏览器的空间，可能会出现空白或者滚动条，不适合移动端和响应式设计。<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/23909497">2</a></p>
+<p>固定布局通常使用CSS的position属性来设置元素的定位类型，其中有以下几种常用的值：</p>
+<ul>
+<li><strong>static</strong>：默认值，没有定位，元素出现在正常的文档流中。</li>
+<li><strong>relative</strong>：相对定位，元素相对于自身原来的位置进行偏移，但不影响文档流中其他元素的位置。</li>
+<li><strong>absolute</strong>：绝对定位，元素脱离文档流，相对于最近的已定位的祖先元素进行偏移，如果没有则相对于body元素。</li>
+<li><strong>fixed</strong>：固定定位，元素脱离文档流，相对于浏览器窗口进行偏移，不随滚动条而移动。</li>
+<li><strong>inherit</strong>：从父元素继承position属性的值。</li>
+</ul>
+<p>固定布局还需要使用left、right、top或者bottom来设置元素相对于参照元素的偏移值。</p>
+</blockquote>
+<p>从上面的具体介绍，我们也知道固定布局便是我们最初接触的传统布局形式，有点时代的眼泪的感觉，我们在使用的时候也会发现，他并不适合作为页面的主体布局模式。在这里就不过多介绍了。</p>
+<h3 id="流式布局">流式布局</h3>
+<blockquote>
+<p>流式布局是一种网页布局方式，它的特点是页面中的元素的宽度按照屏幕分辨率自动进行适配调整。这样可以保证在不同的设备上，页面中的元素大小都能适应屏幕的变化。流式布局也叫百分比布局，因为它主要使用百分比来设置元素的宽度。</p>
+<ul>
+<li>下面是一个简单的例子，使用流式布局来实现一个三列的布局，左右两列固定宽度，中间一列自适应。</li>
+</ul>
+<pre><code class="language-html">&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;left&quot;&gt;左侧&lt;/div&gt;
+  &lt;div class=&quot;middle&quot;&gt;中间&lt;/div&gt;
+  &lt;div class=&quot;right&quot;&gt;右侧&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-css">.container &#123;
+  width: 100%;
+&#125;
+
+.left &#123;
+  width: 200px;
+  float: left;
+&#125;
+
+.right &#123;
+  width: 200px;
+  float: right;
+&#125;
+
+.middle &#123;
+  margin-left: 200px;
+  margin-right: 200px;
+&#125;
+</code></pre>
+</blockquote>
+<p>流式布局可以任意改变窗口大小、比例，但容器中的文字，无法做出相应的改变。</p>
+<h3 id="弹性布局">弹性布局</h3>
+<blockquote>
+<p>弹性布局是一种CSS3的布局模式，它可以让容器中的子元素在任何方向上排列，并且可以自动调整它们的大小，以适应不同的屏幕和设备¹²。弹性布局也叫flex布局或flexbox布局，因为它主要使用flex属性来控制子元素的排列和伸缩³⁴。弹性布局是一种更灵活和高效的布局方式，可以替代传统的block和inline布局⁵。</p>
+<p>下面是一个简单的示例，使用弹性布局来实现一个三列布局，左右两列固定宽度，中间一列自适应。</p>
+<pre><code class="language-html">&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;left&quot;&gt;左侧&lt;/div&gt;
+  &lt;div class=&quot;middle&quot;&gt;中间&lt;/div&gt;
+  &lt;div class=&quot;right&quot;&gt;右侧&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-css">.container &#123;
+  display: flex; /* 设置容器为弹性布局 */
+&#125;
+
+.left &#123;
+  width: 200px; /* 设置左侧列固定宽度 */
+&#125;
+
+.right &#123;
+  width: 200px; /* 设置右侧列固定宽度 */
+&#125;
+
+.middle &#123;
+  flex: 1; /* 设置中间列自适应 */
+&#125;
+</code></pre>
+</blockquote>
+<p>==弹性布局是一个十分重要的布局方式，大家可以详细学习一下～==</p>
+<hr>
+<p>在介绍<strong>自适应布局</strong>以及<strong>响应式布局</strong>之前，我们看看动图了解一下他们的区别</p>
+<ul>
+<li><strong>响应式布局</strong></li>
+</ul>
+<p><img src="./assets/iShot_2023-04-23_09.18.03.gif" alt="iShot_2023-04-23_09.18.03"></p>
+<ul>
+<li><strong>自适应布局</strong></li>
+</ul>
+<p><img src="./assets/iShot_2023-04-23_09.20.09.gif" alt="iShot_2023-04-23_09.20.09"></p>
+<p>从动图我们可以了解到自适应布局，其可以根据页面尺寸改变大小，但当到一定阈值时无法进一步缩小，需要刷新改变其布局。<u>细心的朋友可以发现，在刷新时，网址发生了变化。</u></p>
+<p>我们可以访问网址亲自感受一下</p>
+<h3 id="自适应布局">自适应布局</h3>
+<blockquote>
+<p>自适应布局是一种网页设计的方法，它可以让网页的内容根据不同的设备屏幕分辨率而进行适应¹³⁵。自适应布局的特点是分别为不同的屏幕分辨率定义布局，即创建多个静态布局，每个静态布局对应一个屏幕分辨率范围³⁴。自适应布局可以使用<strong>CSS媒体查询（media query</strong>）来实现¹⁵。自适应布局与响应式布局的区别是，响应式布局是一种流式布局，它可以让网页的内容随着浏览器窗口的大小而动态调整¹⁵。</p>
+<p>好的，我根据你的需求写了一个自适应布局的代码，你可以看看效果是否符合你的预期。我使用了 CSS Grid 来实现栅格布局，你可以在这里了解更多关于 CSS Grid 的知识：<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Grid_Layout">https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Grid_Layout</a></p>
+<p>这是我的代码：</p>
+<pre><code class="language-html">&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+.container &#123;
+  display: grid;
+  grid-template-columns: 200px 1fr 200px; /* 左右两列固定宽度，中间一列自适应宽度 */
+  grid-gap: 10px; /* 每列之间有10px的间隔 */
+&#125;
+
+.item &#123;
+  height: 100px;
+  background-color: lightblue;
+&#125;
+
+@media only screen and (max-width: 600px) &#123; /* 当屏幕宽度小于600px时 */
+  .container &#123;
+    grid-template-columns: 1fr; /* 变成一列布局 */
+  &#125;
+&#125;
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;item&quot;&gt;左侧栏&lt;/div&gt;
+  &lt;div class=&quot;item&quot;&gt;中间栏&lt;/div&gt;
+  &lt;div class=&quot;item&quot;&gt;右侧栏&lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</blockquote>
+<h3 id="响应式布局">响应式布局</h3>
+<blockquote>
+<p>你好，这是Bing。根据我的搜索结果，响应式布局指的是同一页面在不同屏幕尺寸下有不同的布局¹⁴⁵。响应式布局的目的是让网页能够适应不同的设备和浏览器，提高用户体验和兼容性⁴。响应式布局有几种方法，常见的有以下几种¹²³：</p>
+<ul>
+<li>使用 **CSS 媒体查询（media query）**来根据不同的屏幕宽度设置不同的样式规则。</li>
+<li>使用百分比、rem、em 等相对单位来设置元素的宽度、高度、字体大小等，使之能够随着父元素或根元素的变化而变化。</li>
+<li>使用 flexbox 或 grid 布局来实现弹性的栅格布局，让元素能够自动填充或缩放空间。</li>
+<li>使用 viewport meta 标签来控制网页在移动设备上的缩放比例和视口宽度。</li>
+<li>使用图片或字体的响应式加载技术，根据设备的分辨率和网络状况来加载不同质量或大小的资源。</li>
+</ul>
+<p>好的，我根据你的需求写了一个响应式布局的代码，你可以看看效果是否符合你的预期。我使用了 flex 布局来实现弹性的栅格布局，你可以在这里了解更多关于 flex 布局的知识：<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Flexible_Box_Layout">https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Flexible_Box_Layout</a></p>
+<p>这是我的代码：</p>
+<pre><code class="language-html">&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+.container &#123;
+  display: flex; /* 使用 flex 布局 */
+  flex-wrap: wrap; /* 允许元素换行 */
+&#125;
+
+.item &#123;
+  height: 100px;
+  margin: 5px; /* 每个元素之间有 10px 的间隔 */
+&#125;
+
+.item-1 &#123;
+  background-color: lightblue;
+  flex: 0 0 200px; /* 左侧元素固定宽度为 200px */
+&#125;
+
+.item-2 &#123;
+  background-color: lightgreen;
+  flex: 1 1 auto; /* 中间元素自适应宽度 */
+&#125;
+
+.item-3 &#123;
+  background-color: lightpink;
+  flex: 0 0 200px; /* 右侧元素固定宽度为 200px */
+&#125;
+
+@media only screen and (max-width: 600px) &#123; /* 当屏幕宽度小于600px时 */
+  .item &#123;
+    flex-basis: 100%; /* 所有元素占满一行 */
+  &#125;
+&#125;
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;item item-1&quot;&gt;左侧栏&lt;/div&gt;
+  &lt;div class=&quot;item item-2&quot;&gt;中间栏&lt;/div&gt;
+  &lt;div class=&quot;item item-3&quot;&gt;右侧栏&lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</blockquote>
+<hr>
+<p>看完上面部分我们可以发现，响应式布局和自适应布局实现的关键点，便是==css媒体查询==</p>
+<pre><code class="language-css">/* 自适应 */
+@media only screen and (max-width: 600px) &#123; /* 当屏幕宽度小于600px时 */
+  .container &#123;
+    grid-template-columns: 1fr; /* 变成一列布局 */
+  &#125;
+  
+/* 响应式 */
+@media only screen and (max-width: 600px) &#123; /* 当屏幕宽度小于600px时 */
+  .item &#123;
+    flex-basis: 100%; /* 所有元素占满一行 */
+  &#125;
+</code></pre>
+<h3 id="单位">单位</h3>
+<table>
+<thead>
+<tr>
+<th>单位</th>
+<th style="text-align:left">作用</th>
+<th>特性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>px</td>
+<td style="text-align:left">页面按精确像素展示</td>
+<td>绝对单位</td>
+</tr>
+<tr>
+<td>rem</td>
+<td style="text-align:left">相对根节点html字体大小来计算</td>
+<td>相对单位</td>
+</tr>
+<tr>
+<td>em</td>
+<td style="text-align:left">基准点为相对父节点字体大小</td>
+<td>相对单位</td>
+</tr>
+<tr>
+<td>%</td>
+<td style="text-align:left">相对元素的大小设定的比例</td>
+<td>相对单位</td>
+</tr>
+<tr>
+<td>vw</td>
+<td style="text-align:left">视图的宽度的百分比，1vw代表视图宽度的1%</td>
+<td>视图单位</td>
+</tr>
+<tr>
+<td>vh</td>
+<td style="text-align:left">视图的高度的百分比，1vh代表视图高度的1%</td>
+<td>视图单位</td>
+</tr>
+<tr>
+<td>vmin</td>
+<td style="text-align:left">当钱vw和vh中较小的一个值</td>
+<td>视图单位</td>
+</tr>
+<tr>
+<td>vmax</td>
+<td style="text-align:left">当前vw和vh中较大的一个值</td>
+<td>视图单位</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="文章引用">文章引用</h2>
+<ol>
+<li>文章<u>引用部分</u>及代码部分，基本源于chatgpt对话。</li>
+<li>推荐大家 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1hq4y167Yg/?vd_source=beb5e50e2c6b13642e1c241a89a6fa5e">B站视频</a> 更详细了解此部分内容</li>
+</ol>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+                    <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2023 ByL的小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;ByL
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+                </div>
+            </transition>
+            
+            <transition name="fade">
+                <div id="preview" ref="preview" v-show="previewShow">
+                    <img id="preview-content" ref="previewContent" />
+                </div>
+            </transition>
+            
+        </div>
+        <script src="/js/main.js"></script>
+        
+        
+<script
+    src="https://giscus.app/client.js"
+    data-repo="weidoo/weidoo.github.io"
+    data-repo-id="R_kgDOJSEe1A"
+    data-category="Ideas"
+    data-category-id="DIC_kwDOJSEe1M4CVmYu"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+        
+    </body>
+</html>
